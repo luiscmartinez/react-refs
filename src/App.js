@@ -60,6 +60,11 @@ class App extends Component {
       `${this.state.firstName} ${this.state
         .lastName} submitted this info up to the cloud !!`
     )
+    this.setState({
+      firstName: '',
+      lastName: '',
+      age: ''
+    })
   }
 
   handleChange = (event) => {
@@ -91,14 +96,7 @@ class App extends Component {
           <Age value={this.state.age} onChange={this.handleChange} />
         </div>
         <div>
-          <input
-            type='submit'
-            value='Submit'
-            onClick={this.onSubmit}
-            ref={(input) => {
-              this.submit = input
-            }}
-          />
+          <input type='submit' value='Submit' onClick={this.onSubmit} />
         </div>
       </div>
     )
