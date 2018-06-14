@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import './App.css'
+import FirstName from './components/FirstName'
+import LastName from './components/LastName'
+import Age from './components/Age'
 
 const MyInput = (props) => {
   return <input type='text' ref={props.inputRef} />
@@ -9,7 +12,9 @@ const FuncCustomComp = (props) => {
   let textRef = null
 
   const handleClick = () => {
-    alert(`yey, input val is ${textRef.value}`)
+    alert(
+      `WITHOUT USING STATE YOU MANAGE TO CONTROL THIS INPUTS VALUE: ${textRef.value} `
+    )
   }
   return (
     <div style={styles.myInput}>
@@ -24,6 +29,14 @@ const FuncCustomComp = (props) => {
 }
 
 class App extends Component {
+  constructor () {
+    super()
+    this.state = {
+      firstName: '',
+      lastName: '',
+      age: ''
+    }
+  }
   onKeyUp = (passed, e) => {
     if (e.keyCode === 13) {
       console.log(passed)
@@ -45,6 +58,13 @@ class App extends Component {
   onSubmit = () => {
     alert(`yey submited! ${this.firstName.value}, ${this.lastName.value} `)
   }
+
+  handleChange = (event) => {
+    console.log('in here')
+    // const e = this.state.fistName
+    this.setState({ [event.target.name]: event.target.value })
+  }
+
   render () {
     return (
       <div className='App'>
@@ -54,33 +74,18 @@ class App extends Component {
 
         <div>
           <span>First Name: </span>
-          <input
-            type='text'
-            onKeyUp={this.onKeyUp.bind(this, 'firstName')}
-            ref={(input) => {
-              this.firstName = input
-            }}
+          <FirstName
+            value={this.state.firstName}
+            onChange={this.handleChange}
           />
         </div>
         <div>
           <span>Last Name: </span>
-          <input
-            type='text'
-            onKeyUp={this.onKeyUp.bind(this, 'lastName')}
-            ref={(input) => {
-              this.lastName = input
-            }}
-          />
+          <LastName value={this.state.lastName} onChange={this.handleChange} />
         </div>
         <div>
           <span>Age: </span>
-          <input
-            type='text'
-            onKeyUp={this.onKeyUp.bind(this, 'age')}
-            ref={(input) => {
-              this.age = input
-            }}
-          />
+          <Age value={this.state.age} onChange={this.handleChange} />
         </div>
         <div>
           <input
