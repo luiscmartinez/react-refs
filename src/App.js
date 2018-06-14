@@ -56,7 +56,10 @@ class App extends Component {
     }
   }
   onSubmit = () => {
-    alert(`yey submited! ${this.firstName.value}, ${this.lastName.value} `)
+    alert(
+      `${this.state.firstName} ${this.state
+        .lastName} submitted this info up to the cloud !!`
+    )
   }
 
   handleChange = (event) => {

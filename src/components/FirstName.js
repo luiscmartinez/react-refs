@@ -8,6 +8,7 @@ const FirstName = (props) => {
       name='firstName'
       value={props.value}
       onChange={props.onChange}
+      required
     />
   )
 }
